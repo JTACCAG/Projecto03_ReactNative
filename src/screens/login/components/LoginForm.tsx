@@ -10,7 +10,7 @@ import {
 import {authSignIn} from '../../../services/api/authService';
 import {AuthContext} from '../../../nagivation/context/AuthContext';
 
-const LoginForm = ({navigation}) => {
+const LoginForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const auth = useContext(AuthContext);
 
@@ -28,8 +28,6 @@ const LoginForm = ({navigation}) => {
       const response = await authSignIn(data.email, data.password);
       setLoading(false);
       if (response.success) {
-        // await login(response.data);
-        console.log('aca');
         await auth.login(response.data);
       } else {
         Alert.alert('Error', response.message ?? '');
@@ -49,6 +47,7 @@ const LoginForm = ({navigation}) => {
             onChangeText={onChange}
             onBlur={onBlur}
             error={errors.email ? true : false}
+            inputMode="email"
             value={value}
           />
         )}

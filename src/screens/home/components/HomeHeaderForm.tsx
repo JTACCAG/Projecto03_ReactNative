@@ -16,13 +16,15 @@ const HomeHeaderForm = () => {
       const response = await walletByUser();
       if (response.success) {
         setWallet(response.data);
+      } else {
+        await getWallet();
       }
     };
     getWallet();
   }, []);
 
   return (
-    <View>
+    <View style={styles.general}>
       <Card>
         <Card.Content style={styles.cardContent}>
           <Text variant="titleLarge">Saldo total</Text>
@@ -81,6 +83,9 @@ const styles = StyleSheet.create({
   },
   item: {
     padding: 5,
+  },
+  general: {
+    width: '100%',
   },
 });
 
